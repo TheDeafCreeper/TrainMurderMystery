@@ -135,20 +135,7 @@ public class WorldGameComponent implements AutoSyncedComponent {
             }
             setTargets(targets);
 
-
-            // debug display
-            System.out.println("Hitmen -----------------");
-            for (UUID uuid : getHitmen()) {
-                System.out.println(world.getPlayerByUuid(uuid).getDisplayName().getString());
-            }
-            System.out.println("Detectives -----------------");
-            for (UUID uuid : getDetectives()) {
-                System.out.println(world.getPlayerByUuid(uuid).getDisplayName().getString());
-            }
-            System.out.println("Targets -----------------");
-            for (UUID uuid : getTargets()) {
-                System.out.println(world.getPlayerByUuid(uuid).getDisplayName().getString());
-            }
+            setRunning(true);
         }
     }
 }

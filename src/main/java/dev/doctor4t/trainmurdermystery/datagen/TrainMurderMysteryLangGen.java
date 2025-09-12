@@ -215,5 +215,8 @@ public class TrainMurderMysteryLangGen extends FabricLanguageProvider {
 
         builder.add("tip.door.requires_key", "This door is locked and requires a key to be opened.");
         builder.add("tip.door.requires_different_key", "This door is locked and requires a different key to be opened.");
+
+        builder.add("game.win.hitmen", "All targets were eliminated: The Hitmen win!");
+        builder.add("game.win.passengers", "All hitmen were eliminated: The Passengers win!");
     }
 }

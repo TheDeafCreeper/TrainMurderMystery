@@ -313,7 +313,6 @@ public class TrainMurderMysteryModelGen extends FabricModelProvider {
         this.registerSprinkler(generator, TrainMurderMysteryBlocks.STAINLESS_STEEL_SPRINKLER, TrainMurderMysteryBlocks.STAINLESS_STEEL);
         this.registerSprinkler(generator, TrainMurderMysteryBlocks.GOLD_SPRINKLER, TrainMurderMysteryBlocks.GOLD);
         this.registerButton(generator, TrainMurderMysteryBlocks.SMALL_BUTTON);
-        this.registerButton(generator, TrainMurderMysteryBlocks.SMALL_BUTTON);
         this.registerButton(generator, TrainMurderMysteryBlocks.ELEVATOR_BUTTON);
         this.registerOrnament(generator, TrainMurderMysteryBlocks.GOLD_ORNAMENT);
         this.registerParticleBlockWithItemSprite(generator, TrainMurderMysteryBlocks.SMALL_WOOD_DOOR, TrainMurderMysteryBlocks.TARNISHED_GOLD_PILLAR);

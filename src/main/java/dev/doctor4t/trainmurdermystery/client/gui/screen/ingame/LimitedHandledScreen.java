@@ -155,7 +155,17 @@ public abstract class LimitedHandledScreen<T extends ScreenHandler> extends Scre
     protected void drawMouseoverTooltip(DrawContext context, int x, int y) {
         if (this.handler.getCursorStack().isEmpty() && this.focusedSlot != null && this.focusedSlot.hasStack()) {
             ItemStack itemStack = this.focusedSlot.getStack();
-            context.drawTooltip(this.textRenderer, this.getTooltipFromItem(itemStack), itemStack.getTooltipData(), x - 34, this.y + 50);
+
+            List<Text> tooltipFromItem = this.getTooltipFromItem(itemStack);
+            int textWidth = this.textRenderer.getWidth(itemStack.getName().getString());
+            for (Text text : tooltipFromItem) {
+                int newWidth = this.textRenderer.getWidth(text.getString());
+                if (newWidth > textWidth) {
+                    textWidth = newWidth;
+                }
+            }
+
+            context.drawTooltip(this.textRenderer, tooltipFromItem, itemStack.getTooltipData(), this.x + 76 - (textWidth / 2) , this.y + 50);
         }
     }
 
