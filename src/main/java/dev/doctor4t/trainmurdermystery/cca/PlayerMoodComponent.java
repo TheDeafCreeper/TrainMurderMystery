@@ -50,6 +50,7 @@ public class PlayerMoodComponent implements AutoSyncedComponent, ServerTickingCo
 
     @Environment(EnvType.CLIENT)
     public void renderHud(DrawContext context, RenderTickCounter tickCounter) {
+        if (!TMMComponents.GAME.get(this.player.getWorld()).isRunning()) return;
         if (!Objects.equals(this.previousPreferenceText, this.preferenceText)) {
             this.preferenceTextAlpha = MathHelper.lerp(tickCounter.getTickDelta(true) / 4, this.preferenceTextAlpha, 0f);
             if (this.preferenceTextAlpha <= 0.01f) this.previousPreferenceText = this.preferenceText;
