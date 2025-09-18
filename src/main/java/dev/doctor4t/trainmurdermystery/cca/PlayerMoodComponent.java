@@ -70,15 +70,14 @@ public class PlayerMoodComponent implements AutoSyncedComponent, ServerTickingCo
         }
         context.drawGuiTexture(mood, 5, 6, 14, 17);
 
-        this.arrowProgress = MathHelper.lerp(tickCounter.getTickDelta(true) / 8, this.arrowProgress, 1f);
+        this.arrowProgress = MathHelper.lerp(tickCounter.getTickDelta(true) / 16, this.arrowProgress, 1f);
         if (this.arrowProgress < 0.99f) {
             var arrow = this.fulfilled ? ARROW_UP : ARROW_DOWN;
             context.getMatrices().push();
             context.getMatrices().translate(0, 4 - this.arrowProgress * 4, 0);
-            context.drawGuiTexture(arrow, 7, 6, 10, 13);
+            context.drawSprite(7, 6, 0, 10, 13, context.guiAtlasManager.getSprite(arrow), 1f, 1f, 1f, (float) Math.sin(this.arrowProgress * Math.PI));
             context.getMatrices().pop();
         }
-
         context.drawTextWithShadow(renderer, this.previousPreferenceText, 22, 8, MathHelper.packRgb(1f, 1f, 1f) | ((int) (this.preferenceTextAlpha * 255) << 24));
         context.getMatrices().pop();
         context.getMatrices().push();
