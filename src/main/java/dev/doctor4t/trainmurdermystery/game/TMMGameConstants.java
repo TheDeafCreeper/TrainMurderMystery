@@ -9,15 +9,15 @@ import java.util.List;
 
 public interface TMMGameConstants {
     // Logistics
-    int FADE_TIME = 20;
+    int FADE_TIME = 50;
 
     // Blocks
     int DOOR_AUTOCLOSE_TIME = getInTicks(0, 5);
 
     // Items
-    int KNIFE_COOLDOWN = getInTicks(3, 0);
+    int KNIFE_COOLDOWN = getInTicks(1, 0);
     int JAMMED_DOOR_TIME = getInTicks(1, 0);
-    int LOCKPICK_JAM_COOLDOWN = getInTicks(5, 0);
+    int LOCKPICK_JAM_COOLDOWN = getInTicks(2, 0);
 
     // Sprint
     int MAX_SPRINTING_TICKS = getInTicks(0, 10);
@@ -43,7 +43,7 @@ public interface TMMGameConstants {
                     new Box(127, 121, -539, 147, 125, -533)
             ), "Library")
     ));
-    float MOOD_DRAIN = 1f / getInTicks(3, 0);
+    float MOOD_DRAIN = 1f / getInTicks(30, 0);
     float MOOD_GAIN = 1f / getInTicks(1, 0);
     int MIN_PREFERENCE_COOLDOWN = getInTicks(2, 30);
     int MAX_PREFERENCE_COOLDOWN = getInTicks(3, 30);
