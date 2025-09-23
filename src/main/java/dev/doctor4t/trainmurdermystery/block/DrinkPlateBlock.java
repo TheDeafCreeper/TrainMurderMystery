@@ -2,7 +2,6 @@ package dev.doctor4t.trainmurdermystery.block;
 
 import com.mojang.serialization.MapCodec;
 import dev.doctor4t.trainmurdermystery.block_entity.DrinkPlateBlockEntity;
-import dev.doctor4t.trainmurdermystery.block_entity.PlateBlockEntity;
 import dev.doctor4t.trainmurdermystery.index.TMMBlockEntities;
 import dev.doctor4t.trainmurdermystery.index.TMMDataComponentTypes;
 import dev.doctor4t.trainmurdermystery.index.TMMItems;
@@ -17,7 +16,6 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.state.property.Property;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Hand;
@@ -120,7 +118,7 @@ public class DrinkPlateBlock extends BlockWithEntity {
                 player.playSoundToPlayer(SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1f, 1f);
                 player.setStackInHand(Hand.MAIN_HAND, randomItem);
             }
-        } if (player.getStackInHand(Hand.MAIN_HAND).isOf(TMMItems.POISON)) {
+        } if (player.getStackInHand(Hand.MAIN_HAND).isOf(TMMItems.POISON_VIAL)) {
             blockEntity.setPoisonedItemsCount(blockEntity.getPoisonedItemsCount() + 1);
             player.getStackInHand(Hand.MAIN_HAND).decrement(1);
             player.playSoundToPlayer(SoundEvents.BLOCK_BREWING_STAND_BREW, SoundCategory.BLOCKS, 0.5f, 1f);

@@ -6,6 +6,7 @@ import dev.doctor4t.trainmurdermystery.TMM;
 import dev.doctor4t.trainmurdermystery.block.*;
 import dev.doctor4t.trainmurdermystery.block.property.CouchArms;
 import dev.doctor4t.trainmurdermystery.index.TMMBlocks;
+import dev.doctor4t.trainmurdermystery.index.TMMItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.block.*;
@@ -334,10 +335,21 @@ public class TrainMurderMysteryModelGen extends FabricModelProvider {
         this.registerPanel(generator, TMMBlocks.BARRIER_PANEL, TMM.id("block/barrier_panel"));
     }
 
+    public static final Model SMALL_ITEM = item("small_item", TextureKey.LAYER0);
+
+    private static Model item(String parent, TextureKey... requiredTextureKeys) {
+        return new Model(Optional.of(TMM.id("item/" + parent)), Optional.empty(), requiredTextureKeys);
+    }
+
     @Override
     public void generateItemModels(ItemModelGenerator generator) {
-//        generator.register(TrainMurderMysteryItems.POISON_VIAL, Models.GENERATED);
-//        generator.register(TrainMurderMysteryItems.SCORPION, Models.GENERATED);
+        generator.register(TMMItems.POISON_VIAL, SMALL_ITEM);
+        generator.register(TMMItems.SCORPION, SMALL_ITEM);
+        generator.register(TMMItems.OLD_FASHIONED, SMALL_ITEM);
+        generator.register(TMMItems.MOJITO, SMALL_ITEM);
+        generator.register(TMMItems.MARTINI, SMALL_ITEM);
+        generator.register(TMMItems.COSMOPOLITAN, SMALL_ITEM);
+        generator.register(TMMItems.CHAMPAGNE, SMALL_ITEM);
     }
 
     private BlockStateVariant variant() {

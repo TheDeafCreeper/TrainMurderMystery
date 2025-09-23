@@ -13,8 +13,8 @@ public interface TMMBlockEntities {
     BlockEntityType<SmallDoorBlockEntity> SMALL_WOOD_DOOR = registrar.create("small_wood_door", BlockEntityType.Builder.create(SmallDoorBlockEntity::createWood, TMMBlocks.SMALL_WOOD_DOOR));
     BlockEntityType<SmallDoorBlockEntity> SMALL_TRAIN_DOOR = registrar.create("small_train_door", BlockEntityType.Builder.create(SmallDoorBlockEntity::createTrain, TMMBlocks.SMALL_TRAIN_DOOR));
     BlockEntityType<WheelBlockEntity> WHEEL = registrar.create("wheel", BlockEntityType.Builder.create(WheelBlockEntity::create, TMMBlocks.WHEEL));
-    BlockEntityType<PlateBlockEntity> PLATE = registrar.create("plate", BlockEntityType.Builder.create(PlateBlockEntity::create, TMMBlocks.PLATE));
-    BlockEntityType<DrinkPlateBlockEntity> DRINK_PLATE = registrar.create("drink_plate", BlockEntityType.Builder.create(DrinkPlateBlockEntity::create, TMMBlocks.DRINK_PLATE));
+    BlockEntityType<PlateBlockEntity> PLATE = registrar.create("plate", BlockEntityType.Builder.create(PlateBlockEntity::create, TMMBlocks.FOOD_PLATTER));
+    BlockEntityType<DrinkPlateBlockEntity> DRINK_PLATE = registrar.create("drink_plate", BlockEntityType.Builder.create(DrinkPlateBlockEntity::create, TMMBlocks.DRINK_TRAY));
 
     static void initialize() {
         registrar.registerEntries();

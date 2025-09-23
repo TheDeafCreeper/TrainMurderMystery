@@ -219,19 +219,18 @@ public interface TMMBlocks {
     // Wheels
     Block WHEEL = registrar.createWithItem("wheel", new WheelBlock(AbstractBlock.Settings.copy(DARK_STEEL).nonOpaque().sounds(BlockSoundGroup.COPPER)), TMMItems.DECORATION_GROUP);
 
-    // Plate
-    Block PLATE = registrar.createWithItem("plate", new PlateBlock(
+    // Platters
+    Block FOOD_PLATTER = registrar.createWithItem("food_platter", new PlateBlock(
             AbstractBlock.Settings.copy(Blocks.WHITE_GLAZED_TERRACOTTA)
                     .nonOpaque()
-                    .sounds(BlockSoundGroup.GLASS)
+                    .sounds(BlockSoundGroup.COPPER)
                     .breakInstantly()
                     .noCollision()
     ), TMMItems.DECORATION_GROUP);
-
-    Block DRINK_PLATE = registrar.createWithItem("drink_plate", new DrinkPlateBlock(
+    Block DRINK_TRAY = registrar.createWithItem("drink_tray", new DrinkPlateBlock(
             AbstractBlock.Settings.copy(Blocks.WHITE_GLAZED_TERRACOTTA)
                     .nonOpaque()
-                    .sounds(BlockSoundGroup.GLASS)
+                    .sounds(BlockSoundGroup.CHERRY_WOOD)
                     .breakInstantly()
     ), TMMItems.DECORATION_GROUP);
 

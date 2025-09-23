@@ -4,6 +4,7 @@ import dev.doctor4t.ratatouille.util.registrar.ItemRegistrar;
 import dev.doctor4t.trainmurdermystery.TMM;
 import dev.doctor4t.trainmurdermystery.item.*;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.minecraft.component.type.FoodComponents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -28,8 +29,13 @@ public @SuppressWarnings("unchecked") interface TMMItems {
     Item LETTER = registrar.create("letter", new Item(new Item.Settings().maxCount(1)), EQUIPMENT_GROUP);
     Item BLACKOUT = registrar.create("blackout", new Item(new Item.Settings().maxCount(1)), EQUIPMENT_GROUP);
     Item DISGUISE = registrar.create("disguise", new Item(new Item.Settings().maxCount(1)), EQUIPMENT_GROUP);
-    Item POISON = registrar.create("poison_vial", new Item(new Item.Settings().maxCount(1)), EQUIPMENT_GROUP);
+    Item POISON_VIAL = registrar.create("poison_vial", new Item(new Item.Settings().maxCount(1)), EQUIPMENT_GROUP);
     Item SCORPION = registrar.create("scorpion", new Item(new Item.Settings().maxCount(1)), EQUIPMENT_GROUP);
+    Item OLD_FASHIONED = registrar.create("old_fashioned", new CocktailItem(new Item.Settings().maxCount(1).food(FoodComponents.HONEY_BOTTLE)), EQUIPMENT_GROUP);
+    Item MOJITO = registrar.create("mojito", new CocktailItem(new Item.Settings().maxCount(1).food(FoodComponents.HONEY_BOTTLE)), EQUIPMENT_GROUP);
+    Item MARTINI = registrar.create("martini", new CocktailItem(new Item.Settings().maxCount(1).food(FoodComponents.HONEY_BOTTLE)), EQUIPMENT_GROUP);
+    Item COSMOPOLITAN = registrar.create("cosmopolitan", new CocktailItem(new Item.Settings().maxCount(1).food(FoodComponents.HONEY_BOTTLE)), EQUIPMENT_GROUP);
+    Item CHAMPAGNE = registrar.create("champagne", new CocktailItem(new Item.Settings().maxCount(1).food(FoodComponents.HONEY_BOTTLE)), EQUIPMENT_GROUP);
 
     static void initialize() {
         registrar.registerEntries();

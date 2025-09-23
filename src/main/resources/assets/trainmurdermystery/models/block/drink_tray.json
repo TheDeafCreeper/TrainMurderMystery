@@ -3,8 +3,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "trainmurdermystery:block/drink_plate",
-		"particle": "trainmurdermystery:block/drink_plate"
+		"0": "trainmurdermystery:block/drink_tray",
+		"particle": "trainmurdermystery:block/drink_tray"
 	},
 	"elements": [
 		{

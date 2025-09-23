@@ -2,7 +2,6 @@ package dev.doctor4t.trainmurdermystery.block;
 
 import com.mojang.serialization.MapCodec;
 import dev.doctor4t.trainmurdermystery.block_entity.PlateBlockEntity;
-import dev.doctor4t.trainmurdermystery.block_entity.SprinklerBlockEntity;
 import dev.doctor4t.trainmurdermystery.index.TMMBlockEntities;
 import dev.doctor4t.trainmurdermystery.index.TMMDataComponentTypes;
 import dev.doctor4t.trainmurdermystery.index.TMMItems;
@@ -97,7 +96,7 @@ public class PlateBlock extends BlockWithEntity {
                 player.playSoundToPlayer(SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1f, 1f);
                 player.setStackInHand(Hand.MAIN_HAND, randomItem);
             }
-        } if (player.getStackInHand(Hand.MAIN_HAND).isOf(TMMItems.POISON)) {
+        } if (player.getStackInHand(Hand.MAIN_HAND).isOf(TMMItems.POISON_VIAL)) {
             blockEntity.setPoisonedItemsCount(blockEntity.getPoisonedItemsCount() + 1);
             player.getStackInHand(Hand.MAIN_HAND).decrement(1);
             player.playSoundToPlayer(SoundEvents.BLOCK_BREWING_STAND_BREW, SoundCategory.BLOCKS, 0.5f, 1f);

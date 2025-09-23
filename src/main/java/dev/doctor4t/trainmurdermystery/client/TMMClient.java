@@ -121,8 +121,8 @@ public class TMMClient implements ClientModInitializer {
                 TMMBlocks.GOLD_ORNAMENT,
                 TMMBlocks.WHEEL,
                 TMMBlocks.BARRIER_PANEL,
-                TMMBlocks.PLATE,
-                TMMBlocks.DRINK_PLATE
+                TMMBlocks.FOOD_PLATTER,
+                TMMBlocks.DRINK_TRAY
         );
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
                 TMMBlocks.RHOMBUS_GLASS,

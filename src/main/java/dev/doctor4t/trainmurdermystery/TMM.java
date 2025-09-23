@@ -86,7 +86,6 @@ public class TMM implements ModInitializer {
 // TODO: System that remembers previous roles and allows cycling of roles (Amy)
 
 // Various tweaks who don't need to be recorded
-// TODO: Cabin buttons to open cabins from inside
 // TODO: Fix spectators being shot by guns (Amy)
 
 // TORECORD: Polish
