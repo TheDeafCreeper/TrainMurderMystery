@@ -11,6 +11,7 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -66,10 +67,17 @@ public class LimitedInventoryScreen extends LimitedHandledScreen<PlayerScreenHan
             context.drawItem(this.entry.stack(), this.getX(), this.getY());
             if (this.isHovered()) {
                 this.screen.renderLimitedInventoryTooltip(context, this.entry.stack());
-                drawSlotHighlight(context, this.getX(), this.getY(), 0);
+                drawShopSlotHighlight(context, this.getX(), this.getY(), 0);
             }
             var price = Text.literal(this.entry.price() + "\uE781");
             context.drawTooltip(this.screen.textRenderer, price, this.getX() - 4 - this.screen.textRenderer.getWidth(price) / 2, this.getY() - 9);
+        }
+
+        private void drawShopSlotHighlight(DrawContext context, int x, int y, int z) {
+            int color = -2130706433;
+            context.fillGradient(RenderLayer.getGuiOverlay(), x, y, x + 16, y + 14, color, color, z);
+            context.fillGradient(RenderLayer.getGuiOverlay(), x, y+14, x + 15, y + 15, color, color, z);
+            context.fillGradient(RenderLayer.getGuiOverlay(), x, y+15, x + 14, y + 16, color, color, z);
         }
 
         @Override
