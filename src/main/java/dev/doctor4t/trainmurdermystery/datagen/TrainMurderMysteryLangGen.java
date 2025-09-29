@@ -36,14 +36,13 @@ public class TrainMurderMysteryLangGen extends FabricLanguageProvider {
 //        builder.add("tip.letter.detective.tooltip3", "Potential next victims frequent travelers of the Harpy Express.");
 //        builder.add("tip.letter.detective.tooltip4", "Perfect situation to corner but need to keep targets safe.");
 
-        builder.add(TMMItems.LETTER.getTranslationKey() + ".pamphlet", "Pamphlet");
-        builder.add("tip.letter.pamphlet.name", "Dear %s, welcome aboard the Harpy Express!");
-        builder.add("tip.letter.pamphlet.room", "Please find attached your ticket as well as the key for accessing");
-        builder.add("tip.letter.pamphlet.room.grand_suite", "the Grand Suite");
-        builder.add("tip.letter.pamphlet.room.cabin_suite", "your Cabin Suite");
-        builder.add("tip.letter.pamphlet.room.twin_cabin", "your Twin Cabin");
-        builder.add("tip.letter.pamphlet.tooltip1", "%s for your trip on the 1st of January 1923.");
-        builder.add("tip.letter.pamphlet.tooltip2", "La Sirène wishes you a pleasant and safe voyage.");
+        builder.add("tip.letter.name", "Dear %s, welcome aboard the Harpy Express!");
+        builder.add("tip.letter.room", "Please find attached your ticket as well as the key for accessing");
+        builder.add("tip.letter.room.grand_suite", "the Grand Suite");
+        builder.add("tip.letter.room.cabin_suite", "your Cabin Suite");
+        builder.add("tip.letter.room.twin_cabin", "your Twin Cabin");
+        builder.add("tip.letter.tooltip1", "%s for your trip on the 1st of January 1923.");
+        builder.add("tip.letter.tooltip2", "La Sirène wishes you a pleasant and safe voyage.");
 
         builder.add("itemGroup.trainmurdermystery.building", "TrainMurderMystery: Building Blocks");
         builder.add("itemGroup.trainmurdermystery.decoration", "TrainMurderMystery: Decoration & Functional");

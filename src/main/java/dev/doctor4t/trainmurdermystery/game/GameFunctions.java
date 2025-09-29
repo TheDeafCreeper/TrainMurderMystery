@@ -162,12 +162,12 @@ public class GameFunctions {
             itemStack.apply(DataComponentTypes.LORE, LoreComponent.DEFAULT, component -> new LoreComponent(Text.literal("Room " + finalRoomNumber).getWithStyle(Style.EMPTY.withItalic(false).withColor(0xFF8C00))));
             serverPlayerEntity.giveItemStack(itemStack);
 
-            // give pamphlet
+            // give letter
             ItemStack letter = new ItemStack(TMMItems.LETTER);
 
-            letter.set(DataComponentTypes.ITEM_NAME, Text.translatable(letter.getTranslationKey() + ".pamphlet"));
+            letter.set(DataComponentTypes.ITEM_NAME, Text.translatable(letter.getTranslationKey()));
             int letterColor = 0xC5AE8B;
-            String tipString = "tip.letter.pamphlet.";
+            String tipString = "tip.letter.";
             letter.apply(DataComponentTypes.LORE, LoreComponent.DEFAULT, component -> {
                         List<Text> text = new ArrayList<>();
                         UnaryOperator<Style> stylizer = style -> style.withItalic(false).withColor(letterColor);
