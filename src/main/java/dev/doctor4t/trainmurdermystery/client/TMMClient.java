@@ -20,6 +20,9 @@ import dev.doctor4t.trainmurdermystery.client.render.block_entity.WheelBlockEnti
 import dev.doctor4t.trainmurdermystery.client.render.entity.FirecrackerEntityRenderer;
 import dev.doctor4t.trainmurdermystery.client.render.entity.NoteEntityRenderer;
 import dev.doctor4t.trainmurdermystery.client.util.TMMItemTooltips;
+import dev.doctor4t.trainmurdermystery.entity.FirecrackerEntity;
+import dev.doctor4t.trainmurdermystery.entity.NoteEntity;
+import dev.doctor4t.trainmurdermystery.entity.PlayerBodyEntity;
 import dev.doctor4t.trainmurdermystery.game.GameConstants;
 import dev.doctor4t.trainmurdermystery.game.GameFunctions;
 import dev.doctor4t.trainmurdermystery.index.*;
@@ -46,9 +49,11 @@ import net.minecraft.client.render.model.UnbakedModel;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.util.Colors;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -292,15 +297,36 @@ public class TMMClient implements ClientModInitializer {
         return GameFunctions.isPlayerAliveAndSurvival(MinecraftClient.getInstance().player);
     }
 
+    public static boolean isPlayerSpectatingOrCreative() {
+        return GameFunctions.isPlayerSpectatingOrCreative(MinecraftClient.getInstance().player);
+    }
+
     public static boolean isKiller() {
         return gameComponent != null && gameComponent.getKillers().contains(MinecraftClient.getInstance().player.getUuid());
     }
 
-    public static boolean shouldInstinctHighlight(Entity entityToHighlight) {
-        return isInstinctEnabled() && entityToHighlight instanceof PlayerEntity player && GameFunctions.isPlayerAliveAndSurvival(player);
+    public static int getInstinctHighlight(Entity target) {
+        if (!isInstinctEnabled()) return -1;
+        if (target instanceof PlayerBodyEntity) return 0x606060;
+        if (target instanceof ItemEntity || target instanceof NoteEntity || target instanceof FirecrackerEntity) return 0xDB9D00;
+        if (target instanceof PlayerEntity player) {
+            if (GameFunctions.isPlayerSpectatingOrCreative(player)) return -1;
+            if (isKiller() && gameComponent.isKiller(player)) return MathHelper.hsvToRgb(0F, 1.0F, 0.6F);
+            if (gameComponent.isCivilian(player)) {
+                var mood = PlayerMoodComponent.KEY.get(target).getMood();
+                if (mood < GameConstants.DEPRESSIVE_MOOD_THRESHOLD) {
+                    return 0x171DC6;
+                } else if (mood < GameConstants.MID_MOOD_THRESHOLD) {
+                    return 0x1FAFAF;
+                } else {
+                    return 0x4EDD35;
+                }
+            }
+        }
+        return -1;
     }
 
     public static boolean isInstinctEnabled() {
-        return instinctKeybind.isPressed() && ((isKiller() && isPlayerAliveAndInSurvival()) || (MinecraftClient.getInstance().player != null && MinecraftClient.getInstance().player.isSpectator()));
+        return instinctKeybind.isPressed() && ((isKiller() && isPlayerAliveAndInSurvival()) || isPlayerSpectatingOrCreative());
     }
 }

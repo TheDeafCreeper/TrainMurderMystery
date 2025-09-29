@@ -290,6 +290,10 @@ public class GameFunctions {
         return player != null && !player.isSpectator() && !player.isCreative();
     }
 
+    public static boolean isPlayerSpectatingOrCreative(PlayerEntity player) {
+        return player != null && (player.isSpectator() || player.isCreative());
+    }
+
     record BlockEntityInfo(NbtCompound nbt, ComponentMap components) {
     }
 

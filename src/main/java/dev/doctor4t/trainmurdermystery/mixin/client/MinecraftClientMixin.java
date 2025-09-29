@@ -23,9 +23,7 @@ public class MinecraftClientMixin {
 
     @ModifyReturnValue(method = "hasOutline", at = @At("RETURN"))
     public boolean tmm$hasInstinctOutline(boolean original, @Local(argsOnly = true) Entity entity) {
-        if (TMMClient.shouldInstinctHighlight(entity)) {
-            return true;
-        }
+        if (TMMClient.getInstinctHighlight(entity) != -1) return true;
         return original;
     }
 
