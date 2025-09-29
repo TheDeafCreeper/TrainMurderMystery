@@ -151,17 +151,16 @@ public class GameFunctions {
 
         // select rooms
         Collections.shuffle(playerPool);
-        for (int i = 0; i < playerPool.size(); i++) {
+        int roomNumber = 0;
+        for (ServerPlayerEntity serverPlayerEntity : playerPool) {
             ItemStack itemStack = new ItemStack(TMMItems.KEY);
-            int roomNumber = (int) Math.floor((double) (i + 2) / 2);
-            itemStack.apply(DataComponentTypes.LORE, LoreComponent.DEFAULT, component -> new LoreComponent(Text.literal("Room " + roomNumber).getWithStyle(Style.EMPTY.withItalic(false).withColor(0xFF8C00))));
-            ServerPlayerEntity player = playerPool.get(i);
-            player.giveItemStack(itemStack);
+            roomNumber = roomNumber % 7 + 1;
+            int finalRoomNumber = roomNumber;
+            itemStack.apply(DataComponentTypes.LORE, LoreComponent.DEFAULT, component -> new LoreComponent(Text.literal("Room " + finalRoomNumber).getWithStyle(Style.EMPTY.withItalic(false).withColor(0xFF8C00))));
+            serverPlayerEntity.giveItemStack(itemStack);
 
             // give pamphlet
             ItemStack letter = new ItemStack(TMMItems.LETTER);
-
-            // TODO: Don't give a room key to brokies and tell them they can sleep on the fucking library bed
 
             letter.set(DataComponentTypes.ITEM_NAME, Text.translatable(letter.getTranslationKey() + ".pamphlet"));
             int letterColor = 0xC5AE8B;
@@ -169,10 +168,10 @@ public class GameFunctions {
             letter.apply(DataComponentTypes.LORE, LoreComponent.DEFAULT, component -> {
                         List<Text> text = new ArrayList<>();
                         UnaryOperator<Style> stylizer = style -> style.withItalic(false).withColor(letterColor);
-                        text.add(Text.translatable(tipString + "name", player.getName().getString()).styled(style -> style.withItalic(false).withColor(0xFFFFFF)));
+                        text.add(Text.translatable(tipString + "name", serverPlayerEntity.getName().getString()).styled(style -> style.withItalic(false).withColor(0xFFFFFF)));
                         text.add(Text.translatable(tipString + "room").styled(stylizer));
                         text.add(Text.translatable(tipString + "tooltip1",
-                                Text.translatable(tipString + "room." + switch (roomNumber) {
+                                Text.translatable(tipString + "room." + switch (finalRoomNumber) {
                                     case 1 -> "grand_suite";
                                     case 2, 3 -> "cabin_suite";
                                     default -> "twin_cabin";
@@ -183,7 +182,7 @@ public class GameFunctions {
                         return new LoreComponent(text);
                     }
             );
-            player.giveItemStack(letter);
+            serverPlayerEntity.giveItemStack(letter);
         }
 
         // reset train
