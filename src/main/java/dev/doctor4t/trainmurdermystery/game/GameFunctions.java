@@ -113,6 +113,8 @@ public class GameFunctions {
         TrainWorldComponent trainComponent = TMMComponents.TRAIN.get(world);
         List<ServerPlayerEntity> players = world.getPlayers(serverPlayerEntity -> GameConstants.READY_AREA.contains(serverPlayerEntity.getPos()));
 
+        trainComponent.setNight(!gameComponent.isDiscoveryMode());
+        trainComponent.setSnow(true);
         baseInitialize(world, trainComponent, gameComponent, players);
 
         if (!gameComponent.isDiscoveryMode()) {
@@ -149,7 +151,6 @@ public class GameFunctions {
         world.getGameRules().get(GameRules.DO_TRADER_SPAWNING).set(false, world.getServer());
         world.getGameRules().get(GameRules.PLAYERS_SLEEPING_PERCENTAGE).set(9999, world.getServer());
         world.getServer().setDifficulty(Difficulty.PEACEFUL, true);
-        world.setTimeOfDay(18000);
 
         // dismount all players as it can cause issues
         for (ServerPlayerEntity player : world.getPlayers()) {
@@ -235,7 +236,7 @@ public class GameFunctions {
         WorldBlackoutComponent.KEY.get(world).reset();
         TrainWorldComponent trainComponent = TMMComponents.TRAIN.get(world);
         trainComponent.setTrainSpeed(0);
-        world.setTimeOfDay(6000);
+        trainComponent.setNight(false);
 
         // reset train
         tryResetTrain(world);

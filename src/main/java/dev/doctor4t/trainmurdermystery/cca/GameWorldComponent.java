@@ -10,7 +10,6 @@ import net.minecraft.nbt.NbtList;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.Text;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
@@ -20,7 +19,6 @@ import org.ladysnake.cca.api.v3.component.tick.ServerTickingComponent;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.UUID;
 
 public class GameWorldComponent implements AutoSyncedComponent, ClientTickingComponent, ServerTickingComponent {
@@ -285,13 +283,12 @@ public class GameWorldComponent implements AutoSyncedComponent, ClientTickingCom
                 // check if out of time
                 if (winStatus == GameFunctions.WinStatus.NONE && !GameTimeComponent.KEY.get(serverWorld).hasTime()) winStatus = GameFunctions.WinStatus.TIME;
 
-                // stop game if ran out of time on discovery mode
-                if (winStatus == GameFunctions.WinStatus.TIME && discoveryMode) {
-                    GameFunctions.stopGame(serverWorld);
-                }
+                if (discoveryMode) {
+                    winStatus = winStatus == GameFunctions.WinStatus.TIME ? GameFunctions.WinStatus.TIME : GameFunctions.WinStatus.NONE;
 
-                // win display
-                if (winStatus != GameFunctions.WinStatus.NONE && this.gameStatus == GameStatus.ACTIVE) {
+                    // stop game if ran out of time on discovery mode
+                    if (winStatus == GameFunctions.WinStatus.TIME) GameFunctions.stopGame(serverWorld);
+                } else if (winStatus != GameFunctions.WinStatus.NONE && this.gameStatus == GameStatus.ACTIVE) { // win display
                     GameRoundEndComponent.KEY.get(serverWorld).setRoundEndData(serverWorld.getPlayers(), winStatus);
                     for (ServerPlayerEntity player : serverWorld.getPlayers()) {
                         if (winStatus == GameFunctions.WinStatus.TIME && this.isKiller(player)) GameFunctions.killPlayer(player, true, null);

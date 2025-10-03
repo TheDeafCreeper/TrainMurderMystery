@@ -10,7 +10,6 @@ import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.item.Item;
 import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -61,7 +60,7 @@ public abstract class ClientWorldMixin extends World {
 
     @Inject(method = "tick", at = @At("TAIL"))
     public void tmm$addSnowflakes(BooleanSupplier shouldKeepTicking, CallbackInfo ci) {
-        if (TMMClient.isTrainMoving()) {
+        if (TMMClient.isTrainMoving() && TMMClient.getTrainComponent().isSnowing()) {
             ClientPlayerEntity player = client.player;
             Random random = player.getRandom();
             for (int i = 0; i < 200; i++) {

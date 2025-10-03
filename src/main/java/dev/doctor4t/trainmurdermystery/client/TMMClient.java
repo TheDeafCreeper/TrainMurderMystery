@@ -253,6 +253,10 @@ public class TMMClient implements ClientModInitializer {
         ));
     }
 
+    public static TrainWorldComponent getTrainComponent() {
+        return trainComponent;
+    }
+
     public static float getTrainSpeed() {
         return trainComponent.getTrainSpeed();
     }

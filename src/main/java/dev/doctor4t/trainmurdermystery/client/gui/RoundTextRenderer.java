@@ -125,7 +125,7 @@ public class RoundTextRenderer {
     }
 
     public static void tick() {
-        if (!TMMComponents.GAME.get(MinecraftClient.getInstance().world).isDiscoveryMode()) {
+        if (MinecraftClient.getInstance().world != null && !TMMComponents.GAME.get(MinecraftClient.getInstance().world).isDiscoveryMode()) {
             ClientPlayerEntity player = MinecraftClient.getInstance().player;
             if (welcomeTime > 0) {
                 switch (welcomeTime) {
