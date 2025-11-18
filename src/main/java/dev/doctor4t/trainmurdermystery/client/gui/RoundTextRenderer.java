@@ -4,6 +4,7 @@ import com.mojang.authlib.GameProfile;
 import com.mojang.blaze3d.systems.RenderSystem;
 import dev.doctor4t.trainmurdermystery.cca.GameRoundEndComponent;
 import dev.doctor4t.trainmurdermystery.cca.GameWorldComponent;
+import dev.doctor4t.trainmurdermystery.client.TMMClient;
 import dev.doctor4t.trainmurdermystery.game.GameConstants;
 import dev.doctor4t.trainmurdermystery.game.GameFunctions;
 import dev.doctor4t.trainmurdermystery.index.TMMSounds;
@@ -89,16 +90,16 @@ public class RoundTextRenderer {
                     context.getMatrices().scale(2f, 2f, 1f);
                     context.getMatrices().translate(((looseEnds % 6) - 3.5) * 12, 14 + (looseEnds / 6) * 12, 0);
                     looseEnds++;
-                    var texture = getSkinTextures(entry.player().getName());
+                    var texture = TMMClient.PLAYER_ENTRIES_CACHE.get(entry.player().getId()).getSkinTextures().texture();
                     if (texture != null) {
                         RenderSystem.enableBlend();
                         context.getMatrices().push();
                         context.getMatrices().translate(8, 0, 0);
                         var offColour = entry.wasDead() ? 0.4f : 1f;
-                        context.drawTexturedQuad(texture.texture(), 0, 8, 0, 8, 0, 8 / 64f, 16 / 64f, 8 / 64f, 16 / 64f, 1f, offColour, offColour, 1f);
+                        context.drawTexturedQuad(texture, 0, 8, 0, 8, 0, 8 / 64f, 16 / 64f, 8 / 64f, 16 / 64f, 1f, offColour, offColour, 1f);
                         context.getMatrices().translate(-0.5, -0.5, 0);
                         context.getMatrices().scale(1.125f, 1.125f, 1f);
-                        context.drawTexturedQuad(texture.texture(), 0, 8, 0, 8, 0, 40 / 64f, 48 / 64f, 8 / 64f, 16 / 64f, 1f, offColour, offColour, 1f);
+                        context.drawTexturedQuad(texture, 0, 8, 0, 8, 0, 40 / 64f, 48 / 64f, 8 / 64f, 16 / 64f, 1f, offColour, offColour, 1f);
                         context.getMatrices().pop();
                     }
                     if (entry.wasDead()) {
@@ -137,16 +138,16 @@ public class RoundTextRenderer {
                             killers++;
                         }
                     }
-                    var texture = getSkinTextures(entry.player().getName());
+                    var texture = TMMClient.PLAYER_ENTRIES_CACHE.get(entry.player().getId()).getSkinTextures().texture();
                     if (texture != null) {
                         RenderSystem.enableBlend();
                         context.getMatrices().push();
                         context.getMatrices().translate(8, 0, 0);
                         var offColour = entry.wasDead() ? 0.4f : 1f;
-                        context.drawTexturedQuad(texture.texture(), 0, 8, 0, 8, 0, 8 / 64f, 16 / 64f, 8 / 64f, 16 / 64f, 1f, offColour, offColour, 1f);
+                        context.drawTexturedQuad(texture, 0, 8, 0, 8, 0, 8 / 64f, 16 / 64f, 8 / 64f, 16 / 64f, 1f, offColour, offColour, 1f);
                         context.getMatrices().translate(-0.5, -0.5, 0);
                         context.getMatrices().scale(1.125f, 1.125f, 1f);
-                        context.drawTexturedQuad(texture.texture(), 0, 8, 0, 8, 0, 40 / 64f, 48 / 64f, 8 / 64f, 16 / 64f, 1f, offColour, offColour, 1f);
+                        context.drawTexturedQuad(texture, 0, 8, 0, 8, 0, 40 / 64f, 48 / 64f, 8 / 64f, 16 / 64f, 1f, offColour, offColour, 1f);
                         context.getMatrices().pop();
                     }
                     if (entry.wasDead()) {
