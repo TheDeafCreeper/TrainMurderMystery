@@ -34,7 +34,7 @@ public abstract class ItemEntityMixin {
             return;
         }
 
-        if (GameWorldComponent.KEY.get(player.getWorld()).isRole(player, TMMRoles.KILLER)) return;
+        if (!GameWorldComponent.KEY.get(player.getWorld()).isInnocent(player)) return;
         if (player.equals(this.getOwner())) return;
         if (player.getInventory().contains(itemStack -> itemStack.isIn(TMMItemTags.GUNS))) return;
         if (GameConstants.PREVENT_REVOLVER_PICKUP.contains(player)) return;
