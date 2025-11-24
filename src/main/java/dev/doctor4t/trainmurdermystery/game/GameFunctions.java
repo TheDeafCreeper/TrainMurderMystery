@@ -153,7 +153,7 @@ public class GameFunctions {
     private static int assignRolesAndGetKillerCount(@NotNull ServerWorld world, @NotNull List<ServerPlayerEntity> players, GameWorldComponent gameComponent) {
         // select roles
         var roleSelector = ScoreboardRoleSelectorComponent.KEY.get(world.getScoreboard());
-        var killerCount = (int) Math.floor(players.size() * .2f);
+        var killerCount = (int) Math.floor(players.size() / 6f);
         var total = roleSelector.assignKillers(world, gameComponent, players, killerCount);
         roleSelector.assignVigilantes(world, gameComponent, players, killerCount);
         return total;
@@ -210,7 +210,7 @@ public class GameFunctions {
         GameTimeComponent.KEY.get(world).reset();
 
         // reset train
-        tryResetTrain(world);
+        gameComponent.queueTrainReset();
 
         // select rooms
         Collections.shuffle(players);
@@ -265,9 +265,6 @@ public class GameFunctions {
         TrainWorldComponent trainComponent = TrainWorldComponent.KEY.get(world);
         trainComponent.setSpeed(0);
         trainComponent.setTimeOfDay(TrainWorldComponent.TimeOfDay.DAY);
-
-        // reset train
-        tryResetTrain(world);
 
         // discard all player bodies
         for (var body : world.getEntitiesByType(TMMEntities.PLAYER_BODY, playerBodyEntity -> true)) body.discard();
